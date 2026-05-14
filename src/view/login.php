@@ -1,3 +1,21 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'] ?? '';
+    $senha = $_POST['senha'] ?? '';
+
+}
+    try{
+        $stmt = $pdo->prepare("SELECT id, senha FROM usuarios WHERE email = :email");
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $usuario = $stmt->fetch();
+    } catch (Exception $e) {
+        echo "Erro: " . $e->getMessage();
+    }
+?>
+
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
