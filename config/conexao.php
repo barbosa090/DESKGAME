@@ -1,7 +1,6 @@
-
 <?php
 $host    = 'localhost';
-$db      = 'DESKGAME';
+$db      = 'deskgame';
 $usuario = 'root';
 $senha   = '';
 
