@@ -1,26 +1,32 @@
 <?php
 require_once __DIR__ . "/../config/conexao.php";
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'] ?? '';
-    $senha = $_POST['senha'] ?? '';
 
-    if (empty($email) || empty($senha)) {
-        echo "Por favor, preencha todos os campos.";
-        exit;
+class LoginController {
+    private $pdo;
+
+    
+    public function __construct($conexaoPDO) {
+        $this->pdo = $conexaoPDO; 
     }
-    try {
-        $stmt = $pdo->prepare("INSERT INTO usuarios (email, senha) VALUES (:email, :senha)");
-        $stmt->bindParam(':email', $email);
-        $senhaSegura = password_hash($senha, PASSWORD_DEFAULT);
-        $stmt->bindParam(':senha', $senhaSegura);
-        $stmt->execute();
-        echo "Usuário criado com sucesso!";
-    } catch (PDOException $e) { 
-        echo "Erro no banco de dados: " . $e->getMessage();
-    } catch (Exception $e) {
-        echo "Erro geral: " . $e->getMessage();
+
+    public function autenticar($email, $senha) {
+        if (empty($email) || empty($senha)) {
+            return "Por favor, preencha todos os campos.";
+        }
+
+        try {
+            $stmt = $this->pdo->prepare("INSERT INTO usuarios (email, senha) VALUES (:email, :senha)");
+            $stmt->bindParam(':email', $email);
+            $senhaSegura = password_hash($senha, PASSWORD_DEFAULT);
+            $stmt->bindParam(':senha', $senhaSegura);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            return "Erro no banco de dados: " . $e->getMessage();
+        } catch (Exception $e) {
+            return "Erro geral: " . $e->getMessage();
+        }
+    
     }
-} else {
-    echo "Método de requisição inválido.";
 }
 ?>
