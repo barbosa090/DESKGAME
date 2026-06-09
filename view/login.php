@@ -1,28 +1,24 @@
 <?php
-<?php
 require_once __DIR__ . '/../config/conexao.php';
 require_once __DIR__ . "/../controller/LoginController.php";
 
-session_start();
-
 
 if (isset($_SESSION['usuarios'])) {
-    header("Location: login.php");
-    exit;
+header("Location: index.php");
+exit;
 }
 $mensagemErro = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $senha = $_POST['senha'] ?? '';
-    $loginController = new LoginController($pdo);
-    $resultado = $loginController->autenticar($email, $senha);
-    if ($resultado === true) {
+    $resultado = autenticarUsuario($conexaoPDO, $email, $senha);
 
-    header("Location: index.php");
-    exit;
+    if ($resultado === true) {
+        header("Location: index.php");
+        exit;
     } else {
-    $mensagemErro = $resultado;
+        $mensagemErro = $resultado;
     }
 }
 ?>
@@ -32,13 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="icon" href="favicon.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Upgrade Gaming</title>
+    <title>Login - DESKGAME</title>
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
 
     <div class="login-container">
-        <h2 style="color: #706d6d;">Upgrade Gaming</h2>
+        <h2 style="color: #17c5e4;">DESKGAME</h2>
 
         <?php if (!empty($mensagemErro)): ?>
             <div class="erro-alerta">
