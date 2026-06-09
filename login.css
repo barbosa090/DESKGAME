@@ -1,76 +1,107 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #0b0c10;
-    color: #474849;
+    background-color: #0b0c10; 
+    color: #c5c6c7; 
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    align-items: center; 
+    height: 100vh; 
 }
+
 .login-container {
-    background-color: #d9dbdd;
+    background-color: #1f2833; 
+    border-radius: 8px; 
     padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4); 
+    border: 1px solid #2f3b4c;
+    border-top: 4px solid #463077; 
     width: 100%;
     max-width: 360px;
-    border-top: 4px solid #000000; /* Roxo Gamer */
+    box-sizing: border-box;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
-h2 {
+
+.login-container:hover {
+    transform: translateY(-5px); 
+    border-color: #17c5e4; 
+    box-shadow: 0 10px 25px rgba(23, 197, 228, 0.25); 
+}
+
+.login-container h2 {
     text-align: center;
-    color: #fff;
-    margin-bottom: 25px;
+    margin-top: 0;
+    margin-bottom: 30px; 
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #66fcf1; 
     font-weight: 600;
 }
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 14px;
-    color: #000000; /* Neon Ciano */
+
+.login-container p {
+    margin: 0 0 16px 0; 
+    padding: 0;
 }
-input[type="email"],
-input[type="password"] {
+
+.login-container p:last-of-type {
+    margin-bottom: 28px; 
+}
+
+.login-container input[type="email"],
+.login-container input[type="password"] {
     width: 100%;
     padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #5f5e5e;
+    border: 1px solid #2f3b4c;
     border-radius: 5px;
-    background-color: #ebebeb;
-    color: #575757;
+    background-color: #0b0c10; 
+    color: #ffffff; 
+    font-size: 15px;
     box-sizing: border-box;
-    transition: 0.3s;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-input[type="email"]:focus,
-input[type="password"]:focus {
+
+.login-container input[type="email"]:focus,
+.login-container input[type="password"]:focus {
     outline: none;
-    border-color: #000000;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    border-color: #17c5e4; 
+    box-shadow: 0 0 8px rgba(23, 197, 228, 0.4);
 }
-input[type="submit"] {
+
+.login-container input[type="submit"] {
     width: 100%;
-    padding: 12px;
-    background-color: #777777;
+    display: block;
+    background-color: #463077; 
+    color: #ffffff;
+    padding: 14px; 
     border: none;
     border-radius: 5px;
-    color: rgb(240, 240, 240);
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
 }
-input[type="submit"]:hover {
-    background-color: #302f2f;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+
+.login-container input[type="submit"]:hover {
+    background-color: #17c5e4; 
+    color: #0b0c10; 
+    box-shadow: 0 0 15px rgba(23, 197, 228, 0.6); 
 }
+
 .erro-alerta {
     color: #ff3333;
     background-color: #2a1a1a;
     padding: 12px;
     border: 1px solid #ff3333;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 25px; 
     text-align: center;
     font-size: 14px;
 }
