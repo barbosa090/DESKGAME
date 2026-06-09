@@ -1,0 +1,8 @@
+id init 11 "extra"= auto icrement primay
+
+nome varchar 100
+
+sobrenome varchar 100
+
+email varchar 100 
+senha varchar 255
