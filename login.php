@@ -13,6 +13,19 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['id'] = $usuario['id'];
         $_SESSION['nome'] = $usuario['nome'];
         $_SESSION["tipo"] = $usuario['tipo'];
+
+       if($_SESSION["tipo"] === "admin") {
+            header("Location: admin.php");
+            exit();
+        } else {
+            header("Location: index.php");
+           
+        }
+    exit;
+    } else {
+        $mensagemErro = "E-mail ou senha inválidos!";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
