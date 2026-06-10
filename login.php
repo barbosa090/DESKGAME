@@ -7,6 +7,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
    $stmt->execute([$email]);
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($usuario && password_verify($senha, $usuario['senha'])) {
+        session_start();
+        $_SESSION['logado'] = true;
+        $_SESSION['id'] = $usuario['id'];
+        $_SESSION['nome'] = $usuario['nome'];
+        $_SESSION["tipo"] = $usuario['tipo'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
