@@ -1,31 +1,12 @@
 <?php
 require_once __DIR__ . '/config/conexao.php';
-require_once __DIR__ . "/controller/LoginController.php";
 
-session_start();
-
-// Proteção contra loop: se já logou, vai para a index
-if (isset($_SESSION['usuario_id'])) {
-    header("Location: index.php");
-    exit;
-}
-
-$mensagemErro = '';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'] ?? '';
-    $senha = $_POST['senha'] ?? '';
-    
-    $loginController = new LoginController($pdo);
-    $resultado = $loginController->autenticar($email, $senha);
-    
-    if ($resultado === true) {
-        header("Location: index.php");
-        exit;
-    } else {
-        $mensagemErro = $resultado;
-    }
-}
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
+   $email =FILTER_INPUT(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+   $senha = $_POST['senha'];
+   $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
+   $stmt->execute([$email]);
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
