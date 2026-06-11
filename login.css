@@ -9,7 +9,13 @@ body {
     align-items: center; 
     height: 100vh; 
 }
-
+h2{
+    color: #66fcf1; 
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px; 
+    letter-spacing: 1px;
+}
 .login-container {
     background-color: #1f2833; 
     border-radius: 8px; 
