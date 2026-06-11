@@ -6,28 +6,9 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upgrade Gaming - Catálogo</title>
+    <title>DESKGAME - Catálogo</title>
     <link rel="stylesheet" href="index.css">
-   <style>
-    .gamer-nav {
-            display: flex;
-            gap: 20px;
-        }
-        .nav-link {
-            color: #c5c6c7;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: color 0.3s ease;
-        }
-        .nav-link:hover, .nav-link.active {
-            color: #66fcf1; 
-        }
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+   
     </style>
 </head>
 <body>
@@ -38,18 +19,20 @@ session_start();
             <h1 class="logo-txt">🖥️ DESKGAME</h1>
             
             <nav class="gamer-nav">
-                <a href="#" class="nav-link active">Início</a>
-                <a href="#" class="nav-link">Computadores</a>
-                <a href="#" class="nav-link">Notebooks</a>
+                <a href="index.php" class="nav-link active">Início</a>
+                <a href="computadores.php" class="nav-link">Computadores</a>
+                <a href="notebooks.php" class="nav-link">Notebooks</a>
             </nav>
 
             <div class="header-right">
                 <div class="user-info">
                     <span>Catálogo de Fotos</span>
                 </div>
-                <a href="logout.php" class="btn-logout">Sair</a>
+                <a href="cadastro.php" class="btn-logout">Sair</a>
             </div>
         </header>
+       <h1 style="margin-top: 40px; color: #14dcff;">Bem-vindo ao DESKGAME!</h1>
+        <p style="color: #c5c6c7; font-size: 18px; margin-top: 20px;">Explore nosso catálogo de máquinas gamer, notebooks e PCs personalizados. Encontre o setup perfeito para suas necessidades e leve sua experiência de jogo para o próximo nível!</p>
 
         <h2 style="border-bottom: 1px solid #1f2833; padding-bottom: 10px; margin-bottom: 20px; color: #fff;">
             Nossas Máquinas
@@ -88,6 +71,40 @@ session_start();
                     🔹 <strong>RAM:</strong> 32GB DDR5
                 </div>
                 <div class="pc-price">R$ 8.999,00</div>
+            </div>
+
+            <div class="pc-card">
+                <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=400&q=80" alt="PC Gamer Spark Start">
+                <h3>PC Gamer Spark Start</h3>
+                <div class="pc-specs">
+                    🔹 <strong>CPU:</strong> AMD Ryzen 5 5600G<br>
+                    🔹 <strong>GPU:</strong> Radeon Vega 7 (Integrada)<br>
+                    🔹 <strong>RAM:</strong> 16GB DDR4
+                </div>
+                <div class="pc-price">R$ 2.399,00</div>
+            </div>
+
+            <div class="pc-card">
+                <img src="https://images.unsplash.com/photo-1618424181497-157f25b6ddd5?auto=format&fit=crop&w=400&q=80" alt="PC Gamer Quantum Horizon">
+                <h3>PC Gamer Quantum Horizon</h3>
+                <div class="pc-specs">
+                    🔹 <strong>CPU:</strong> AMD Ryzen 5 7600<br>
+                    🔹 <strong>GPU:</strong> RX 7700 XT<br>
+                    🔹 <strong>RAM:</strong> 16GB DDR5
+                </div>
+                <div class="pc-price">R$ 6.150,00</div>
+            </div>
+
+            <div class="pc-card">
+                <img src="https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?auto=format&fit=crop&w=400&q=80" alt="PC Titan Chronos X">
+                <h3>PC Titan Chronos X</h3>
+                <div class="pc-specs">
+                    🔹 <strong>CPU:</strong> AMD Ryzen 7 7800X3D<br>
+                    🔹 <strong>GPU:</strong> RTX 4080 Super<br>
+                    🔹 <strong>RAM:</strong> 32GB DDR5
+                </div>
+                <div class="pc-price">R$ 14.899,00</div>
+            </div>
             </div>
 
         </div>
