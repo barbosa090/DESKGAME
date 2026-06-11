@@ -1,39 +1,41 @@
+version: '3.8'
 services:
-  # Servidor PHP
-  app:
-    build:
-      context: .
-      dockerfile: docker/php/Dockerfile
-    container_name: php-app
-    volumes:
-      - ./src:/var/www/html
-    env_file:
-      - .env
-    depends_on:
-      - db
-
-  # Servidor Web (Nginx)
+  # Servidor Web (PHP + Apache)
   web:
-    image: nginx:alpine
-    container_name: nginx-server
+    build: .
+    container_name: deskgame_web
     ports:
       - "8080:80"
     volumes:
-      - ./src:/var/www/html
-      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - .:/var/www/html/
     depends_on:
-      - app
+      - db
+    networks:
+      - deskgame_network
 
   # Banco de Dados (MySQL)
   db:
     image: mysql:8.0
-    container_name: mysql-db
+    container_name: deskgame_db
     restart: always
-    environment:
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_USER: ${DB_USERNAME}
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - ./mysql_data:/var/lib/mysql
     ports:
       - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "" # Deixando a senha do root vazia igual ao XAMPP
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: "deskgame"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - deskgame_network
+
+networks:
+  deskgame_network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+
+# O Docker vai baixar tudo, criar o banco, conectar os
+# arquivos e deixar rodando em segundo plano usando:
+#docker compose up -d
