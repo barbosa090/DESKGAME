@@ -178,6 +178,17 @@ h1{
 
 .explicao-peca { font-size: 0.8rem; color: #c5c6c7; line-height: 1.4; }
 
+.btn-encomendar {
+    cursor: pointer; /* Faz a mãozinha aparecer ao passar o mouse */
+    display: block;
+}
+
+
+        
+    
+
+
+
 
 
 
