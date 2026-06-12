@@ -4,7 +4,7 @@
 $host    = 'localhost';
 $db      = 'deskgame';
 $usuario = 'root';
-$senha   = '';
+$senha   = 'root';
 
 try {
   $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $usuario, $senha);
