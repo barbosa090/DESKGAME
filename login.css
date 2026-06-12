@@ -9,7 +9,8 @@ body {
     align-items: center; 
     height: 100vh; 
 }
-h2{
+
+h2 {
     color: #66fcf1; 
     font-size: 28px;
     font-weight: bold;
@@ -60,7 +61,6 @@ h2{
 .login-container p:last-of-type {
     margin-bottom: 28px; 
 }
-
 .login-container input[type="email"],
 .login-container input[type="password"] {
     width: 100%;
@@ -71,6 +71,7 @@ h2{
     color: #ffffff; 
     font-size: 15px;
     box-sizing: border-box;
+    margin-bottom: 20px; 
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -80,7 +81,6 @@ h2{
     border-color: #17c5e4; 
     box-shadow: 0 0 8px rgba(23, 197, 228, 0.4);
 }
-
 .login-container input[type="submit"] {
     width: 100%;
     display: block;
@@ -100,7 +100,6 @@ h2{
     color: #0b0c10; 
     box-shadow: 0 0 15px rgba(23, 197, 228, 0.6); 
 }
-
 .erro-alerta {
     color: #ff3333;
     background-color: #2a1a1a;
