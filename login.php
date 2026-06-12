@@ -1,8 +1,6 @@
 <?php
 require_once __DIR__ . '/config/conexao.php';
 
-
-// Garante que a variável da mensagem comece vazia
 $mensagemErro = ""; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -10,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $senha = $_POST['senha'];
 
     $emailAdminOficial = "admin@deskgame.com.br";
-    $senhaAdminOficial = "SenhaSecreta123"; // Troque pela senha que você quiser
+    $senhaAdminOficial = "SenhaSecreta123"; 
 
     if ($email === $emailAdminOficial && $senha === $senhaAdminOficial) {
         if (session_status() === PHP_SESSION_NONE) {
@@ -23,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: admin/index.php");
         exit();
     } else {
-        // Se não for o admin, procura o cliente no banco
+        
         $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
         $stmt->execute([$email]);
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
