@@ -16,3 +16,7 @@ CREATE TABLE IF NOT EXISTS produtos (
   imagem_url VARCHAR(255) DEFAULT 'default.png',
   data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO usuarios (nome, email, senha, tipo) 
+VALUES ('Admin - Gustavo', 'admin@deskgame.com', 'MINHA1802', 'admin')
+ON DUPLICATE KEY UPDATE tipo='admin';
