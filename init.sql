@@ -17,6 +17,15 @@ CREATE TABLE IF NOT EXISTS produtos (
   data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE artigos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    subtitulo VARCHAR(255) NOT NULL,
+    conteudo TEXT NOT NULL,
+    autor VARCHAR(100) DEFAULT 'Admin',
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 INSERT INTO usuarios (nome, email, senha, tipo) 
 VALUES ('Admin - Gustavo', 'admin@deskgame.com', 'MINHA1802', 'admin')
 ON DUPLICATE KEY UPDATE tipo='admin';

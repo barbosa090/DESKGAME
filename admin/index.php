@@ -7,26 +7,25 @@ if (!isset($_SESSION['logado']) || $_SESSION['tipo'] !== 'admin') { // se não e
 }
 ?>
 <?php
-// admin/index.php
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// TRAVA DE SEGURANÇA: Se não estiver logado OU não for admin, chuta de volta para o login
+
 if (!isset($_SESSION['logado']) || $_SESSION['tipo'] !== 'admin') {
     header("Location: ../login.php");
     exit();
 }
 
-// CONEXÃO COM O BANCO DE DADOS (para pegar dados do relatório)
+
 require_once '../config/conexao.php';
 
-// Conta quantos computadores existem no banco
 $sql_pcs = "SELECT COUNT(*) as total FROM produtos WHERE tipo = 'computador'";
 $stmt_pcs = $pdo->query($sql_pcs);
 $total_pcs = $stmt_pcs->fetch(PDO::FETCH_ASSOC)['total'];
 
-// Conta quantos notebooks existem no banco
+
 $sql_notes = "SELECT COUNT(*) as total FROM produtos WHERE tipo = 'notebook'";
 $stmt_notes = $pdo->query($sql_notes);
 $total_notes = $stmt_notes->fetch(PDO::FETCH_ASSOC)['total'];
@@ -48,6 +47,7 @@ $total_notes = $stmt_notes->fetch(PDO::FETCH_ASSOC)['total'];
                 <a href="index.php" class="nav-link active">Dashboard</a>
                 <a href="computadores.php" class="nav-link">Gerenciar PCs</a>
                 <a href="notebooks.php" class="nav-link">Gerenciar Notes</a>
+                <a href="artigos.php" class="nav-link ">Artigos</a>
             </nav>
         </div>
 
@@ -87,7 +87,7 @@ $total_notes = $stmt_notes->fetch(PDO::FETCH_ASSOC)['total'];
             <div class="module-card">
                 <h3>Gerenciar Notebooks</h3>
                 <p>Controle o estoque de laptops da loja, altere especificações técnicas, detalhes de portabilidade e valores.</p>
-                <a href="notebook.php" class="btn-manage">Abrir Estoque 💻</a>
+                <a href="notebooks.php" class="btn-manage">Abrir Estoque 💻</a>
             </div>
 
         </div>
