@@ -3,27 +3,27 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-
+// SEGURANÇA: Trava de segurança e Conexão com o banco
 require_once '../includes/auth.php'; 
 require_once '../config/conexao.php'; 
 
-$mensagem = ""; 
+$mensagem = ""; // Para exibir alertas na tela
 
 
+//  AÇÃO DE SALVAR OU ATUALIZAR (Disparada pelo formulário POST)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome     = trim($_POST['nome']);
     $preco    = trim($_POST['preco']);
     $tag_uso  = trim($_POST['tag_uso']);
     $cpu_nome = trim($_POST['cpu_nome']);
     $gpu_nome = trim($_POST['gpu_nome']);
-   
+    
+    // Descobre se é um Notebook novo (0) ou uma Edição (> 0)
     $id = isset($_POST['id']) ? intval($_POST['id']) : 0;
 
     if ($id === 0) {
-
-        $sql = "INSERT INTO produtos (nome, preco, tag_uso, cpu_nome, gpu_nome, tipo) 
-                VALUES (:nome, :preco, :tag_uso, :cpu_nome, :gpu_nome, 'notebook')";
-        $stmt = $pdo->prepare($sql); 
+        // CREATE - INSERIR NOVO NOTEBOOK (Alinhado com as 5 variáveis do execute)
+        $stmt = $pdo->prepare("INSERT INTO produtos (nome, preco, tag_uso, cpu_nome, gpu_nome, tipo) VALUES (:nome, :preco, :tag_uso, :cpu_nome, :gpu_nome, 'notebook')");
         $stmt->execute([
             'nome'     => $nome,
             'preco'    => $preco,
@@ -33,12 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
         $mensagem = "✅ Notebook cadastrado com sucesso!";
     } else {
-       
-        $sql = "UPDATE produtos SET 
-                    nome = :nome, preco = :preco, tag_uso = :tag_uso, 
-                    cpu_nome = :cpu_nome, gpu_nome = :gpu_nome 
-                WHERE id = :id AND tipo = 'notebook'";
-        $stmt = $pdo->prepare($sql);
+        // UPDATE - ATUALIZAR EXISTENTE (Corrigido para 'notebook')
+        $stmt = $pdo->prepare("UPDATE produtos SET nome = :nome, preco = :preco, tag_uso = :tag_uso, cpu_nome = :cpu_nome, gpu_nome = :gpu_nome WHERE id = :id AND tipo = 'notebook'");
         $stmt->execute([
             'nome'     => $nome,
             'preco'    => $preco,
@@ -52,12 +48,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 
+//  AÇÃO DE DELETAR (Disparada pelo link ?deletar_id=X)
 if (isset($_GET['deletar_id'])) {
     $id_para_deletar = intval($_GET['deletar_id']);
     
-    
-    $sql_delete = "DELETE FROM produtos WHERE id = :id AND tipo = 'notebook'";
-    $stmt = $pdo->prepare($sql_delete);
+    // Deleta apenas se for do tipo notebook por segurança (Corrigido para 'notebook')
+    $stmt = $pdo->prepare( "DELETE FROM produtos WHERE id = :id AND tipo = 'notebook'");
     $stmt->execute(['id' => $id_para_deletar]);
     
     header("Location: notebooks.php?sucesso=deletado");
@@ -68,12 +64,12 @@ if (isset($_GET['sucesso']) && $_GET['sucesso'] === 'deletado') {
     $mensagem = "❌ Notebook removido do catálogo.";
 }
 
+
+//  READ - BUSCAR APENAS NOTEBOOKS PARA A LISTA DA ESQUERDA (Corrigido para 'notebook')
+$stmt = $pdo->query("SELECT * FROM produtos WHERE tipo = 'notebook' ORDER BY id DESC");
+$notebooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
  
-$sql_todos = "SELECT * FROM produtos WHERE tipo = 'notebook' ORDER BY id DESC";
-$stmt_todos = $pdo->query($sql_todos);
-$notebooks = $stmt_todos->fetchAll(PDO::FETCH_ASSOC);
-
-
+//  CAPTURAR O NOTEBOOK ESCOLHIDO PARA EDIÇÃO/INSPEÇÃO (Corrigido para 'notebook')
 $id_escolhido = isset($_GET['id']) ? intval($_GET['id']) : null;
 $id_editar    = isset($_GET['editar']) ? intval($_GET['editar']) : null;
 $note_detalhe = null;

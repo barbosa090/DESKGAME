@@ -16,7 +16,7 @@ $mensagem = "";
 $modo_edicao = false;
 $artigo_detalhe = null;
 
-
+//  AÇÃO DE SALVAR OU ATUALIZAR 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = intval($_POST['id']);
     $titulo = $_POST['titulo'];
@@ -24,19 +24,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conteudo = $_POST['conteudo'];
 
     if ($id === 0) {
-        
+        // Cadastro Novo
         $stmt = $pdo->prepare("INSERT INTO artigos (titulo, subtitulo, conteudo) VALUES (:titulo, :subtitulo, :conteudo)");
         $stmt->execute(['titulo' => $titulo, 'subtitulo' => $subtitulo, 'conteudo' => $conteudo]);
         $mensagem = "⚡ Artigo publicado com sucesso!";
     } else {
-       
+        // Editar Existente
         $stmt = $pdo->prepare("UPDATE artigos SET titulo = :titulo, subtitulo = :subtitulo, conteudo = :conteudo WHERE id = :id");
         $stmt->execute(['titulo' => $titulo, 'subtitulo' => $subtitulo, 'conteudo' => $conteudo, 'id' => $id]);
         $mensagem = "⚙️ Artigo atualizado com sucesso!";
     }
 }
 
-
+//  AÇÃO DE DELETAR 
 if (isset($_GET['deletar_id'])) {
     $id_del = intval($_GET['deletar_id']);
     $stmt = $pdo->prepare("DELETE FROM artigos WHERE id = :id");
@@ -45,7 +45,7 @@ if (isset($_GET['deletar_id'])) {
     exit();
 }
 
-
+//  AÇÃO DE SELECIONAR PARA EDITAR OU VER 
 if (isset($_GET['editar'])) {
     $modo_edicao = true;
     $id_edit = intval($_GET['editar']);
@@ -61,7 +61,7 @@ if (isset($_GET['editar'])) {
     $artigo_detalhe = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-
+//  BUSCAR TODOS OS ARTIGOS PARA LISTAGEM 
 $stmt_todos = $pdo->prepare("SELECT * FROM artigos ORDER BY id DESC");
 $stmt_todos->execute();
 $artigos = $stmt_todos->fetchAll(PDO::FETCH_ASSOC);

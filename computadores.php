@@ -3,23 +3,23 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-
+//  Conexão com o banco
 require_once 'config/conexao.php';
 
-
+//  Captura o ID do PC que foi clicado na URL
 $id_escolhido = isset($_GET['id']) ? intval($_GET['id']) : null;
 $pc_detalhe = null;
 
+//  Busca detalhes do PC clicado
 if ($id_escolhido) {
-    $sql_busca_um = "SELECT * FROM produtos WHERE id = :id AND tipo = 'computador'";
-    $stmt_busca = $pdo->prepare($sql_busca_um);
+    $stmt =$pdo->prepare( "SELECT * FROM produtos WHERE id = :id AND tipo = 'computador'");
     $stmt_busca->execute(['id' => $id_escolhido]);
     $pc_detalhe = $stmt_busca->fetch(PDO::FETCH_ASSOC);
 }
 
-$sql_todos = "SELECT * FROM produtos WHERE tipo = 'computador' ORDER BY id DESC";
-$stmt_todos = $pdo->query($sql_todos);
-$listaPCs = $stmt_todos->fetchAll(PDO::FETCH_ASSOC);
+//  Busca todos os computadores para os cards
+$stmt = $pdo->query( "SELECT * FROM produtos WHERE tipo = 'computador' ORDER BY id DESC");
+$listaPCs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -31,10 +31,12 @@ $listaPCs = $stmt_todos->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 
-    <div class="main-wrapper">
-        
-        <?php include 'includes/header.php'; ?>
 
+    <div class="main-wrapper">
+
+    <?php include 'includes/header.php'; ?>
+        
+        
         <main class="gamer-main" style="margin-top: 40px; padding: 0 20px; text-align: left;">
             <h1 class="titulo-secao">Laboratório de Setups</h1>
             <p class="subtitulo-secao">Selecione uma das máquinas abaixo para carregar a análise de hardware.</p>

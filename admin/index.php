@@ -7,25 +7,26 @@ if (!isset($_SESSION['logado']) || $_SESSION['tipo'] !== 'admin') { // se não e
 }
 ?>
 <?php
-
+// admin/index.php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-
+// TRAVA DE SEGURANÇA: Se não estiver logado OU não for admin, chuta de volta para o login
 if (!isset($_SESSION['logado']) || $_SESSION['tipo'] !== 'admin') {
     header("Location: ../login.php");
     exit();
 }
 
-
+// CONEXÃO COM O BANCO DE DADOS (para pegar dados do relatório)
 require_once '../config/conexao.php';
 
+// Conta quantos computadores existem no banco
 $sql_pcs = "SELECT COUNT(*) as total FROM produtos WHERE tipo = 'computador'";
 $stmt_pcs = $pdo->query($sql_pcs);
 $total_pcs = $stmt_pcs->fetch(PDO::FETCH_ASSOC)['total'];
 
-
+// Conta quantos notebooks existem no banco
 $sql_notes = "SELECT COUNT(*) as total FROM produtos WHERE tipo = 'notebook'";
 $stmt_notes = $pdo->query($sql_notes);
 $total_notes = $stmt_notes->fetch(PDO::FETCH_ASSOC)['total'];

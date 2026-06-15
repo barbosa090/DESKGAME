@@ -4,12 +4,14 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+//  SEGURANÇA: Centraliza a proteção usando o seu arquivo oficial
+require_once '../includes/auth.php'; // Trava de segurança contra invasores
+require_once '../config/conexao.php'; // Conexão segura com o banco
 
-require_once '../includes/auth.php'; 
-require_once '../config/conexao.php';
+$mensagem = ""; // Para exibir alertas de sucesso ou erro na tela
 
-$mensagem = ""; 
 
+//  AÇÃO DE SALVAR OU ATUALIZAR (Seguro contra SQL Injection)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome     = trim($_POST['nome']);
     $preco    = trim($_POST['preco']);
@@ -19,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id       = isset($_POST['id']) ? intval($_POST['id']) : 0;
 
     if ($id === 0) {
-        
+        // CREATE - INSERIR NOVO
         $stmt = $pdo->prepare("INSERT INTO produtos (nome, preco, tag_uso, cpu_nome, gpu_nome, tipo) 
                 VALUES (:nome, :preco, :tag_uso, :cpu_nome, :gpu_nome, :tipo)");
         $stmt->execute([
@@ -32,12 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]);
         $mensagem = "✅ Computador cadastrado com sucesso!";
     } else {
-        
-        $sql = "UPDATE produtos SET 
-                    nome = :nome, preco = :preco, tag_uso = :tag_uso, 
-                    cpu_nome = :cpu_nome, gpu_nome = :gpu_nome 
-                WHERE id = :id";
-        $stmt = $pdo->prepare($sql);
+        // UPDATE - ATUALIZAR EXISTENTE
+        $stmt = $pdo->prepare( "UPDATE produtos SET nome = :nome, preco = :preco, tag_uso = :tag_uso, cpu_nome = :cpu_nome, gpu_nome = :gpu_nome WHERE id = :id");
         $stmt->execute([
             'nome'     => $nome,
             'preco'    => $preco,
@@ -51,25 +49,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 
+//  AÇÃO DE DELETAR (Seguro usando prepare e intval)
 if (isset($_GET['deletar_id'])) {
-    
+    // Força o ID a ser estritamente um número inteiro, bloqueando trapaças na URL
     $id_para_deletar = intval($_GET['deletar_id']);
-    $sql_delete = "DELETE FROM produtos WHERE id = :id";
-    $stmt = $pdo->prepare($sql_delete);
+    
+    $stmt = $pdo->prepare("DELETE FROM produtos WHERE id = :id");
     $stmt->execute(['id' => $id_para_deletar]);
     
     header("Location: computadores.php?sucesso=deletado");
     exit();
 }
 
-
+//  CORREÇÃO DE SEGURANÇA (XSS): Evita injeção de códigos pela URL
 if (isset($_GET['sucesso']) && $_GET['sucesso'] === 'deletado') {
     $mensagem = "❌ Computador removido do catálogo.";
 }
 
-$sql_todos = "SELECT * FROM produtos WHERE tipo = 'computador' ORDER BY id DESC";
-$stmt_todos = $pdo->query($sql_todos);
-$computadores = $stmt_todos->fetchAll(PDO::FETCH_ASSOC);
+
+//  READ - LISTAR TODOS (Seguro, pois não depende de dados digitados pelo usuário)
+$stmt = $pdo->query( "SELECT * FROM produtos WHERE tipo = 'computador' ORDER BY id DESC");
+$computadores = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+// CAPTURAR O PC ESCOLHIDO (Seguro usando prepare)
 $id_escolhido = isset($_GET['id']) ? intval($_GET['id']) : null;
 $id_editar    = isset($_GET['editar']) ? intval($_GET['editar']) : null;
 $pc_detalhe   = null;
