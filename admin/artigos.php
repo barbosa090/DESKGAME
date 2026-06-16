@@ -66,6 +66,7 @@ $stmt_todos = $pdo->prepare("SELECT * FROM artigos ORDER BY id DESC");
 $stmt_todos->execute();
 $artigos = $stmt_todos->fetchAll(PDO::FETCH_ASSOC);
 ?>
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -83,6 +84,7 @@ $artigos = $stmt_todos->fetchAll(PDO::FETCH_ASSOC);
                 <a href="artigos.php" class="nav-link active ">Artigos</a>
             </nav>
         </header>
+        <main class="container-admin">
 
         <main style="max-width: 1100px; margin: 40px auto; padding: 0 20px;">
             <?php if (!empty($mensagem)): ?>
