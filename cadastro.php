@@ -57,8 +57,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="submit" value="Cadastrar e Entrar">
         </form>
 
-        <a href="login.php" class="login-link">Já tenho uma conta. Fazer Login</a>
-    </div>
+     <div class="login-link-container" style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(23, 197, 228, 0.2); display: flex; flex-direction: column; align-items: center; gap: 12px;">
+            <span class="texto-divisor" style="color: #a0a0a0; font-size: 13px; letter-spacing: 0.5px; font-family: sans-serif;">Já possui um cadastro?</span>
+            
+            <a href="login.php" class="login-link" style="display: inline-block; width: 100%; box-sizing: border-box; text-align: center; padding: 12px; color: #17c5e4; text-decoration: none; font-weight: bold; font-size: 14px; border: 2px solid #17c5e4; border-radius: 4px; background: transparent; font-family: sans-serif; transition: all 0.25s ease-in-out;" onmouseover="this.style.backgroundColor='#17c5e4'; this.style.color='#121212'; this.style.boxShadow='0 0 12px rgba(23, 197, 228, 0.5)';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#17c5e4'; this.style.boxShadow='none';">
+                Já tenho uma conta. Fazer Login
+            </a>
+        </div>
 
 </body>
 </html>

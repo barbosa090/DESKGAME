@@ -13,8 +13,8 @@ $pc_detalhe = null;
 //  Busca detalhes do PC clicado
 if ($id_escolhido) {
     $stmt =$pdo->prepare( "SELECT * FROM produtos WHERE id = :id AND tipo = 'computador'");
-    $stmt_busca->execute(['id' => $id_escolhido]);
-    $pc_detalhe = $stmt_busca->fetch(PDO::FETCH_ASSOC);
+    $stmt->execute(['id' => $id_escolhido]);
+    $pc_detalhe = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 //  Busca todos os computadores para os cards
@@ -29,9 +29,7 @@ $listaPCs = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Computadores - DESKGAME</title>
     <link rel="stylesheet" href="computadores.css">
 </head>
-<body>
-
-
+<body >
     <div class="main-wrapper">
 
     <?php include 'includes/header.php'; ?>
@@ -71,7 +69,7 @@ $listaPCs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <p style="color: #66fcf1; font-weight: bold; margin: 0 0 15px 0;">R$ <?= number_format($pc['preco'], 2, ',', '.'); ?></p>
                         </div>
                         
-                        <a href="computador.php?id=<?= $pc['id']; ?>" style="display: block; text-align: center; background: #463077; color: white; padding: 10px; border-radius: 5px; text-decoration: none; font-weight: bold; font-size: 13px; transition: 0.2s;">Ver Setup 🔎</a>
+                        <a href="computadores.php?id=<?= $pc['id']; ?>" style="display: block; text-align: center; background: #463077; color: white; padding: 10px; border-radius: 5px; text-decoration: none; font-weight: bold; font-size: 13px; transition: 0.2s;">Ver Setup 🔎</a>
                     </div>
 
                 <?php endforeach; ?>

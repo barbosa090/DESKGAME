@@ -23,13 +23,14 @@ $listaPCs = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notebooks - DESKGAME</title>
-    <link rel="stylesheet" href="computadores.css">
+    <link rel="stylesheet" href="notebooks.css">
 </head>
-<body>
+
+<body >
 
     <div class="main-wrapper">
         
-        <?php include 'includes/header.php'; ?>
+    <?php include 'includes/header.php'; ?>
 
         <main class="gamer-main" style="margin-bottom: 40px; padding: 0;">
             <h1 class="titulo-secao">Análise de Notebooks</h1>

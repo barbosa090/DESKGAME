@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Login - DESKGAME</title>
     <link rel="stylesheet" href="login.css">
 </head>
-<body class="body-login"> 
+<body>
     
     <div class="login-container">
         <h2 style="color: cyan;">DESKGAME</h2>
@@ -73,7 +73,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <input type="submit" value="Entrar">
         </form>
+<div class="cadastro-link-container" style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(0, 255, 255, 0.2); display: flex; flex-direction: column; align-items: center; gap: 12px;">
+            <span class="texto-divisor" style="color: #a0a0a0; font-size: 13px; letter-spacing: 0.5px; font-family: sans-serif;">Não tem uma conta?</span>
+            
+            <a href="cadastro.php" class="btn-cadastro" style="display: inline-block; width: 100%; box-sizing: border-box; text-align: center; padding: 12px; color: cyan; text-decoration: none; font-weight: bold; font-size: 14px; border: 2px solid cyan; border-radius: 4px; background: transparent; font-family: sans-serif; transition: all 0.25s ease-in-out;" onmouseover="this.style.backgroundColor='cyan'; this.style.color='#121212'; this.style.boxShadow='0 0 12px rgba(0, 255, 255, 0.5)';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='cyan'; this.style.boxShadow='none';">
+                Cadastre-se aqui
+            </a>
+        </div>
     </div>
-
-</body>
+    </body>
 </html>
+     

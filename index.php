@@ -17,7 +17,7 @@ session_start();
         
         <?php include 'includes/header.php'; ?>
 
-        <h1 style="margin-top: 40px; color: #17c5e4;">Bem-vindo ao DESKGAME!</h1>
+        <h1 style="margin-top: 40px; color: ;">Bem-vindo ao DESKGAME!</h1>
         <p style="color: #c5c6c7; font-size: 18px; margin-top: 20px;">
             Explore nosso catálogo de máquinas gamer, notebooks e PCs personalizados. Encontre o setup perfeito para suas necessidades e leve sua experiência de jogo para o próximo nível!
         </p>
