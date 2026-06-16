@@ -101,13 +101,15 @@ if ($id_escolhido) {
 
     <div class="main-wrapper">
         <header class="gamer-header">
+            <div style="display: flex; align-items: center; gap: 40px; justify-content: center;">
             <h1 class="logo-txt">🖥️ DESKGAME ADMIN</h1>
-            <nav class="gamer-nav">
-                <a href="index.php" class="nav-link">Dashboard</a>
-                <a href="computadores.php" class="nav-link active">Gerenciar PCs</a>
-                <a href="notebooks.php" class="nav-link ">Gerenciar Notebooks</a>
-                <a href="artigos.php" class="nav-link">Artigos</a>
-            </nav>
+                <nav class="gamer-nav">
+                    <a href="index.php" class="nav-link">Dashboard</a>
+                    <a href="computadores.php" class="nav-link active">Gerenciar PCs</a>
+                    <a href="notebooks.php" class="nav-link ">Gerenciar Notebooks</a>
+                    <a href="artigos.php" class="nav-link">Artigos</a>
+                </nav>
+            </div>
         </header>
 
         <main style="max-width: 1100px; margin: 40px auto; padding: 0 20px;">
