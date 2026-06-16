@@ -15,6 +15,7 @@
         <a href="index.php" class="nav-link">Início</a>
         <a href="computadores.php" class="nav-link">Computadores</a>
         <a href="notebooks.php" class="nav-link">Notebooks</a>
+        <a href="artigos.php" class="nav-link">Artigos</a>
     </nav>
     <div class="header-right">
         <?php if (isset($_SESSION['usuario_nome'])): ?>
