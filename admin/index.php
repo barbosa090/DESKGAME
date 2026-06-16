@@ -43,7 +43,6 @@ $total_notes = $stmt_notes->fetch(PDO::FETCH_ASSOC)['total'];
     <header class="admin-header">
         <div style="display: flex; align-items: center; gap: 40px;">
             <h1 class="brand-title">🖥️ DESKGAME <span class="brand-subtitle">| Painel Admin</span></h1>
-            
             <nav class="admin-nav">
                 <a href="index.php" class="nav-link active">Dashboard</a>
                 <a href="computadores.php" class="nav-link">Gerenciar PCs</a>
