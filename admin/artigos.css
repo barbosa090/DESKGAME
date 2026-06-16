@@ -6,6 +6,9 @@ body {
             color: #c5c6c7;
         }
         .main-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ocupa 100% da altura da janela do navegador */
     width: 100%;
 }
 
@@ -24,7 +27,7 @@ body {
     background: #1f2833;
     padding: 15px 30px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     border-bottom: 3px solid #463077;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
