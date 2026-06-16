@@ -1,9 +1,9 @@
 <?php
 
-$host    = "localhost"
-$db      = "deskgame"
-$usuario =  "root"
-$senha   = ""
+$host    = "localhost";
+$db      = "deskgame";
+$usuario =  "root";
+$senha   = "";
 
 try {
   $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $usuario, $senha);
